@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/trend/trend",
+    "pages/profile/profile",
+    "pages/onboarding/onboarding",
+    "pages/inject/inject",
+    "pages/history/history",
+    "pages/repair/repair",
+    "pages/effect/effect",
+    "pages/metric/metric",
+    "pages/reminder/reminder",
+    "pages/share/share",
+    "pages/export/export",
+    "pages/validate/validate",
+    "pages/about/about",
+    "pages/releaseCheck/releaseCheck",
+    "pages/penAdd/penAdd",
+    "pages/penList/penList",
+    "pages/planSettings/planSettings",
+    "pages/records/records"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F8FAFF",
+    "navigationBarTitleText": "GLP-1记录助手",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8FAFF"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#94A3B8",
+    "selectedColor": "#2563EB",
+    "backgroundColor": "#F8FAFF",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
