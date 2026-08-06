@@ -1,0 +1,214 @@
+/* ===== 蓝色渐变头部 ===== */
+.profile-header {
+  background: linear-gradient(165deg, #2563EB 0%, #3B82F6 55%, #60A5FA 100%);
+  border-radius: 0 0 32rpx 32rpx;
+  padding: 0 24rpx 32rpx;
+}
+
+.header-safe-top {
+  height: var(--safe-top);
+}
+
+.header-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+}
+
+.header-title-text {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+}
+
+/* ===== 白色药品信息卡片 ===== */
+.header-drug-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(37, 99, 235, 0.08);
+  padding: 32rpx;
+  margin-top: 16rpx;
+}
+
+.drug-card-row {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+/* 左侧圆形图标 */
+.drug-icon-circle {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: #EFF6FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drug-icon-circle .iconfont {
+  font-size: 48rpx;
+  color: #2563EB;
+}
+
+/* 中间药品信息 */
+.drug-info-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.drug-name-line {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.drug-name-text {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1E293B;
+}
+
+.drug-brand-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 40rpx;
+  padding: 0 16rpx;
+  border-radius: 20rpx;
+  background: #EFF6FF;
+  color: #2563EB;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.drug-spec-desc {
+  font-size: 26rpx;
+  color: #64748B;
+}
+
+/* ===== Stats Card ===== */
+.stats-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--s-3) var(--s-2);
+  margin: 0 var(--gutter);
+}
+
+.stats-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+}
+
+.stats-num {
+  font-size: var(--f-title1);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-tight);
+  color: var(--c-text);
+}
+
+.stats-label {
+  font-size: var(--f-caption);
+  line-height: var(--lh-relaxed);
+  color: var(--c-text-3);
+}
+
+.stats-divider {
+  width: 1rpx;
+  height: var(--s-4);
+  background: var(--c-divider);
+}
+
+/* ===== Profile List & Cards ===== */
+.profile-list {
+  margin: 0 var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  padding: var(--s-3) var(--s-2);
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  min-height: 112rpx;
+  box-sizing: border-box;
+}
+
+.profile-card:active {
+  background: var(--c-gray-1);
+}
+
+.profile-card__icon {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: var(--s-2);
+}
+
+.profile-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-card__title {
+  font-size: var(--f-body);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  line-height: var(--lh-relaxed);
+}
+
+.profile-card__right {
+  flex-shrink: 0;
+  margin-left: var(--s-1);
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+
+.profile-card__arrow {
+  color: var(--c-hint);
+  font-size: var(--f-xl);
+}
+
+/* ===== About item right ===== */
+.version-text {
+  font-size: var(--f-caption);
+  color: var(--c-muted);
+  line-height: var(--lh-relaxed);
+}
+
+.env-badge {
+  padding: 4rpx var(--s-1);
+  border-radius: var(--r-sm);
+  font-size: var(--f-small);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-tight);
+}
+
+.env-badge.dev {
+  background: var(--c-warning-container);
+  color: var(--c-warning);
+}
+
+.env-badge.prod {
+  background: var(--c-primary-container);
+  color: var(--c-primary);
+}

@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">设置方案</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <view class="settings-section">
+    <view class="settings-section__title">方案类型</view>
+    <view class="plan-type-row">
+      <view class="plan-type-card {{planType === 'weight' ? 'active' : ''}}" data-type="weight" bindtap="onSelectPlanType">
+        <view class="plan-type-card__icon">
+          <text class="iconfont icon-weight iconfont--primary"></text>
+        </view>
+        <view class="plan-type-card__name">减重方案</view>
+        <view class="plan-type-card__desc">体重管理</view>
+      </view>
+      <view class="plan-type-card {{planType === 'diabetes' ? 'active' : ''}}" data-type="diabetes" bindtap="onSelectPlanType">
+        <view class="plan-type-card__icon">
+          <text class="iconfont icon-heart iconfont--primary"></text>
+        </view>
+        <view class="plan-type-card__name">糖尿病方案</view>
+        <view class="plan-type-card__desc">血糖管理</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+  <view class="g-spacer-md"></view>
+
+  <view class="save-btn-wrap">
+    <button class="g-btn g-btn--primary" bindtap="onSave">保存设置</button>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

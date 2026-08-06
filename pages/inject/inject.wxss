@@ -1,0 +1,315 @@
+.save-section {
+  padding: 0 var(--gutter);
+}
+
+.remain-text {
+  font-size: var(--f-large);
+  font-weight: var(--fw-medium);
+  color: var(--c-primary);
+  line-height: var(--lh-tight);
+}
+
+.pen-info-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.change-pen-btn {
+  font-size: var(--f-caption);
+  color: var(--c-primary);
+  padding: var(--s-xs) var(--s-2);
+  background: var(--c-primary-container);
+  border-radius: var(--r-pill);
+  line-height: var(--lh-none);
+  font-weight: var(--fw-medium);
+}
+
+/* 笔选择弹窗 */
+.pen-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(93, 83, 89, 0.35);
+  backdrop-filter: blur(8rpx);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.pen-picker-dialog {
+  width: 100%;
+  max-height: 80vh;
+  background: var(--c-surface);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(var(--safe-bottom) + var(--s-2));
+  box-shadow: var(--shadow-elevated);
+}
+
+.pen-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-3) var(--gutter);
+  border-bottom: 1rpx solid var(--c-divider);
+}
+
+.pen-picker-title {
+  font-size: var(--f-title2);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  line-height: var(--lh-relaxed);
+}
+
+.pen-picker-close {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-gray-1);
+  border-radius: var(--r-pill);
+}
+
+.pen-picker-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--s-2) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  max-height: 60vh;
+}
+
+.pen-picker-item {
+  display: flex;
+  align-items: center;
+  padding: var(--s-3);
+  background: var(--c-gray-1);
+  border-radius: var(--r-lg);
+  border: 4rpx solid transparent;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.pen-picker-item.selected {
+  background: var(--c-primary-container);
+  border-color: var(--c-primary-light);
+}
+
+.pen-picker-radio {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 4rpx solid var(--c-border);
+  margin-right: var(--s-2);
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pen-picker-item.selected .pen-picker-radio {
+  border-color: var(--c-primary);
+  background: var(--c-white);
+}
+
+.pen-picker-radio-inner {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.pen-picker-item.selected .pen-picker-radio-inner {
+  background: var(--c-primary);
+}
+
+.pen-picker-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.pen-picker-name {
+  font-size: var(--f-body);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  margin-bottom: var(--s-xs);
+  line-height: var(--lh-relaxed);
+}
+
+.pen-picker-item.selected .pen-picker-name {
+  color: var(--c-primary);
+  font-weight: var(--fw-medium);
+}
+
+.pen-picker-spec {
+  font-size: var(--f-caption);
+  color: var(--c-text-3);
+  margin-bottom: var(--s-xs);
+  line-height: var(--lh-relaxed);
+}
+
+.pen-picker-meta {
+  font-size: var(--f-small);
+  color: var(--c-text-3);
+  line-height: var(--lh-relaxed);
+}
+
+.pen-picker-divider {
+  margin: 0 var(--s-xs);
+}
+
+.pen-picker-footer {
+  padding: var(--s-2) var(--gutter) 0;
+  border-top: 1rpx solid var(--c-divider);
+}
+
+.pen-picker-confirm {
+  width: 100%;
+  margin-bottom: var(--s-2);
+  border-radius: var(--r-pill);
+}
+
+.pen-picker-add {
+  text-align: center;
+  font-size: var(--f-body);
+  color: var(--c-primary);
+  padding: var(--s-2);
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-medium);
+}
+
+/* 剂量网格 */
+.dose-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-2);
+}
+
+/* 日期选择 */
+.date-selector {
+  background: var(--c-gray-1);
+  border-radius: var(--r-lg);
+}
+
+.picker-row {
+  display: flex;
+  align-items: center;
+  padding: var(--s-3);
+  gap: var(--s-2);
+}
+
+.picker-value {
+  flex: 1;
+  font-size: var(--f-body);
+  color: var(--c-text);
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-medium);
+}
+
+/* 剂量网格 */
+.dose-item {
+  padding: var(--s-2) var(--s-1);
+  text-align: center;
+  font-size: var(--f-body);
+  color: var(--c-text-2);
+  background: var(--c-gray-1);
+  border-radius: var(--r-md);
+  border: 4rpx solid transparent;
+  transition: all 0.2s ease;
+  line-height: var(--lh-relaxed);
+  box-sizing: border-box;
+  font-weight: var(--fw-medium);
+}
+
+.dose-item.selected {
+  background: var(--c-primary-container);
+  border-color: var(--c-primary-light);
+  color: var(--c-primary);
+  font-weight: var(--fw-medium);
+}
+
+/* 部位网格 */
+.site-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
+}
+
+.site-item {
+  padding: var(--s-2) var(--s-1);
+  text-align: center;
+  font-size: var(--f-body);
+  color: var(--c-text-2);
+  background: var(--c-gray-1);
+  border-radius: var(--r-md);
+  border: 4rpx solid transparent;
+  transition: all 0.2s ease;
+  line-height: var(--lh-relaxed);
+  box-sizing: border-box;
+  font-weight: var(--fw-medium);
+}
+
+.site-item.selected {
+  background: var(--c-primary-container);
+  border-color: var(--c-primary-light);
+  color: var(--c-primary);
+  font-weight: var(--fw-medium);
+}
+
+/* 自定义输入 */
+.custom-input {
+  display: flex;
+  align-items: center;
+  background: var(--c-gray-1);
+  border-radius: var(--r-lg);
+  padding: 0 var(--s-3);
+  height: 96rpx;
+  box-sizing: border-box;
+}
+
+.custom-label {
+  font-size: var(--f-body);
+  color: var(--c-text-2);
+  margin-right: var(--s-2);
+  white-space: nowrap;
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-medium);
+}
+
+.input-field {
+  flex: 1;
+  font-size: var(--f-body);
+  color: var(--c-text);
+  height: 96rpx;
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-regular);
+}
+
+/* 备注 */
+.note-input {
+  background: var(--c-gray-1);
+  border-radius: var(--r-lg);
+  padding: var(--s-3);
+  box-sizing: border-box;
+}
+
+.textarea {
+  width: 100%;
+  font-size: var(--f-body);
+  color: var(--c-text);
+  min-height: 180rpx;
+  line-height: var(--lh-relaxed);
+  box-sizing: border-box;
+  font-weight: var(--fw-regular);
+}

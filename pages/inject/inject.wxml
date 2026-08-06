@@ -1,0 +1,141 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">记录注射</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-sm"></view>
+
+  <!-- 日期 -->
+  <view class="g-card">
+    <view class="g-card__title">注射日期</view>
+    <view class="date-selector">
+      <picker mode="date" value="{{injectDate}}" start="{{minDate}}" end="{{maxDate}}" bindchange="onDateChange">
+        <view class="picker-row">
+          <text class="iconfont icon-calendar iconfont--primary"></text>
+          <text class="picker-value">{{injectDate}}</text>
+          <text class="iconfont icon-arrow-right iconfont--sm iconfont--muted"></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 剂量 -->
+  <view class="g-card">
+    <view class="g-card__title">本次使用</view>
+    <view class="dose-grid">
+      <view
+        wx:for="{{doseOptions}}"
+        wx:key="index"
+        class="dose-item {{dose === item ? 'selected' : ''}}"
+        bindtap="onDoseSelect"
+        data-index="{{index}}"
+      >{{item}}mg</view>
+    </view>
+  </view>
+
+  <!-- 剩余剂量提示 -->
+  <view class="g-card">
+    <view class="g-flex-between">
+      <view class="g-card__title">当前笔剩余</view>
+      <view class="pen-info-wrap">
+        <text class="remain-text">{{remainDose}}mg</text>
+        <view class="change-pen-btn" bindtap="onChangePen">更换新笔</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 笔选择弹窗 -->
+  <view class="pen-picker-mask" wx:if="{{showPenPicker}}" bindtap="onClosePenPicker">
+    <view class="pen-picker-dialog" catchtap="">
+      <view class="pen-picker-header">
+        <view class="pen-picker-title">选择笔</view>
+        <view class="pen-picker-close" bindtap="onClosePenPicker">
+          <text class="iconfont icon-close iconfont--muted iconfont--sm"></text>
+        </view>
+      </view>
+      <view class="pen-picker-list">
+        <view
+          wx:for="{{availablePens}}"
+          wx:key="penId"
+          class="pen-picker-item {{selectedPenId === item.penId ? 'selected' : ''}}"
+          bindtap="onPenSelect"
+          data-pen-id="{{item.penId}}"
+        >
+          <view class="pen-picker-radio">
+            <view class="pen-picker-radio-inner"></view>
+          </view>
+          <view class="pen-picker-content">
+            <view class="pen-picker-name">{{item.drugName}}</view>
+            <view class="pen-picker-spec">{{item.specName}}</view>
+            <view class="pen-picker-meta">
+              <text>剩余 {{item.remainDose}}mg</text>
+              <text class="pen-picker-divider">·</text>
+              <text>购买 {{item.purchaseDate}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="pen-picker-footer">
+        <button class="g-btn g-btn--primary pen-picker-confirm" bindtap="onConfirmPen" disabled="{{!selectedPenId}}">
+          确认选择
+        </button>
+        <view class="pen-picker-add" bindtap="onGoAddPen">+ 添加新笔</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 部位 -->
+  <view class="g-card">
+    <view class="g-card__title">注射部位</view>
+    <view class="site-grid">
+      <view
+        wx:for="{{presetSites}}"
+        wx:key="index"
+        class="site-item {{site === item ? 'selected' : ''}}"
+        bindtap="onSiteSelect"
+        data-index="{{index}}"
+      >{{item}}</view>
+    </view>
+    <view class="custom-input">
+      <text class="custom-label">自定义</text>
+      <input
+        class="input-field"
+        type="text"
+        placeholder="输入部位"
+        value="{{isSiteCustom ? siteDisplay : ''}}"
+        bindinput="onSiteInput"
+      />
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="g-card">
+    <view class="g-card__title">备注</view>
+    <view class="note-input">
+      <textarea
+        class="textarea"
+        placeholder="添加备注（可选）"
+        value="{{note}}"
+        bindinput="onNoteInput"
+        maxlength="200"
+      ></textarea>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <button class="g-btn g-btn--primary" bindtap="onSave">
+      保存记录
+    </button>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

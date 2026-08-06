@@ -1,0 +1,40 @@
+<view class="container container--no-tabbar">
+  <view class="release-status {{checkResult.passed ? 'release-status--ready' : 'release-status--not-ready'}}" wx:if="{{hasChecked && checkResult}}">
+    <view class="release-status__text">{{checkResult.status}}</view>
+    <view class="release-status__version">v{{checkResult.version}} · {{checkResult.buildDate}}</view>
+  </view>
+
+  <view class="g-card release-action">
+    <view class="g-btn g-btn--primary" bindtap="onCheck">
+      {{checking ? '检查中...' : '开始检查'}}
+    </view>
+  </view>
+
+  <view class="release-result" wx:if="{{hasChecked && checkResult}}">
+    <view class="g-card release-group" wx:for="{{checkResult.results}}" wx:key="name" wx:for-item="group">
+      <view class="release-group__header g-flex-between">
+        <view class="release-group__name g-text-bold">{{group.name}}</view>
+        <view class="g-tag {{group.passed ? 'g-tag--success' : 'g-tag--error'}}">
+          <text class="iconfont {{group.passed ? 'icon-check iconfont--success' : 'icon-close iconfont--danger'}} iconfont--sm"></text>
+          {{group.passed ? '通过' : '失败'}}
+        </view>
+      </view>
+      <view class="release-group__items">
+        <view class="release-item" wx:for="{{group.items}}" wx:key="name" wx:for-item="item">
+          <view class="release-item__dot release-item__dot--{{item.status}}"></view>
+          <view class="release-item__name g-flex-1">{{item.name}}</view>
+          <view class="release-item__detail g-text-muted">{{item.detail}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-card release-tips">
+    <view class="release-tips__title g-text-bold">检查项目说明</view>
+    <view class="release-tips__item">1. Storage存储：注射计划、血糖、提醒配置</view>
+    <view class="release-tips__item">2. 页面完整性：确认所有页面已在app.json注册</view>
+    <view class="release-tips__item">3. 导出功能：文件系统可用性和数据准备</view>
+    <view class="release-tips__item">4. 提醒功能：配置检查和下次注射日期</view>
+    <view class="release-tips__item">5. 共享功能：共享码生成和有效性检查</view>
+  </view>
+</view>

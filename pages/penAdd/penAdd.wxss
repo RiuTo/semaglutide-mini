@@ -1,0 +1,137 @@
+.drug-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.drug-card {
+  padding: var(--s-2) var(--s-3);
+  background: var(--c-surface);
+  border-radius: var(--r-lg);
+  border: 2rpx solid var(--c-border);
+  transition: all 0.2s;
+  box-sizing: border-box;
+  min-height: calc(var(--s-5) + var(--s-4));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.drug-card.selected {
+  background: var(--c-primary-container);
+  border-color: var(--c-primary-light);
+}
+
+.drug-card__title {
+  font-size: var(--f-body);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--s-1);
+}
+
+.drug-card.selected .drug-card__title {
+  color: var(--c-primary);
+}
+
+.drug-card__desc {
+  font-size: var(--f-caption);
+  color: var(--c-text-2);
+  line-height: var(--lh-relaxed);
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-2);
+}
+
+.spec-card {
+  padding: var(--s-2) var(--s-3);
+  background: var(--c-surface);
+  border-radius: var(--r-lg);
+  border: 2rpx solid var(--c-border);
+  transition: all 0.2s;
+  box-sizing: border-box;
+  min-height: calc(var(--s-6) + var(--s-1));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.spec-card.selected {
+  background: var(--c-primary-container);
+  border-color: var(--c-primary-light);
+}
+
+.spec-card__dose {
+  font-size: var(--f-title1);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--s-1);
+}
+
+.spec-card.selected .spec-card__dose {
+  color: var(--c-primary);
+}
+
+.spec-card__desc {
+  font-size: var(--f-caption);
+  color: var(--c-text-2);
+  line-height: var(--lh-relaxed);
+}
+
+.date-selector {
+  background: var(--c-surface);
+  border-radius: var(--r-md);
+  border: 2rpx solid var(--c-border);
+}
+
+.picker-row {
+  display: flex;
+  align-items: center;
+  padding: var(--s-2);
+  gap: var(--s-2);
+}
+
+.picker-value {
+  flex: 1;
+  font-size: var(--f-body);
+  color: var(--c-text);
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-medium);
+}
+
+.price-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--c-surface);
+  border-radius: var(--r-md);
+  padding: 0 var(--s-2);
+  height: calc(var(--s-4) + var(--s-2));
+  box-sizing: border-box;
+  border: 2rpx solid var(--c-border);
+}
+
+.price-input {
+  flex: 1;
+  font-size: var(--f-body);
+  color: var(--c-text);
+  height: calc(var(--s-4) + var(--s-2));
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-medium);
+}
+
+.price-unit {
+  font-size: var(--f-body);
+  color: var(--c-text-2);
+  margin-left: var(--s-2);
+  font-weight: var(--fw-medium);
+}
+
+.save-section {
+  padding: 0 var(--gutter);
+}

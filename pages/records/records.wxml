@@ -1,0 +1,54 @@
+<view class="container container--no-tabbar">
+  <!-- 蓝色渐变头部 -->
+  <view class="records-header">
+    <view class="header-safe-top"></view>
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--white"></text>
+      </view>
+      <view class="header-title">{{metricLabel}}全部记录</view>
+      <view class="header-placeholder"></view>
+    </view>
+    <view class="header-summary">
+      <text class="summary-count">共 {{records.length}} 条记录</text>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <!-- 记录列表 -->
+  <view class="record-list" wx:if="{{records.length > 0}}">
+    <view class="record-card" wx:for="{{records}}" wx:key="date">
+      <view class="record-card__date">
+        <text class="record-date__text">{{item.shortDate}}</text>
+        <text class="record-date__sub">{{item.date}}</text>
+      </view>
+      <view class="record-card__value">
+        <!-- 体重模式 -->
+        <block wx:if="{{metric === 'weight'}}">
+          <text class="record-value__num">{{item.weight}}</text>
+          <text class="record-value__unit">{{item.unit}}</text>
+        </block>
+        <!-- 血糖模式 -->
+        <block wx:else>
+          <view class="glucose-row">
+            <text class="glucose-label">空腹</text>
+            <text class="glucose-val">{{item.fastingDisplay}} {{item.unit}}</text>
+          </view>
+          <view class="glucose-row" wx:if="{{item.afterMeal}}">
+            <text class="glucose-label">餐后</text>
+            <text class="glucose-val">{{item.afterMealDisplay}} {{item.unit}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <view class="empty-icon"></view>
+    <text class="empty-text">暂无记录</text>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

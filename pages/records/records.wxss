@@ -1,0 +1,160 @@
+/* ===== 蓝色渐变头部 ===== */
+.records-header {
+  background: linear-gradient(165deg, #2563EB 0%, #3B82F6 55%, #60A5FA 100%);
+  border-radius: 0 0 32rpx 32rpx;
+  padding: 0 24rpx 32rpx;
+}
+
+.header-safe-top {
+  height: var(--safe-top);
+}
+
+.records-header .g-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 88rpx;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  line-height: var(--lh-none);
+  width: 80rpx;
+}
+
+.iconfont--white {
+  color: #FFFFFF;
+  font-size: 32rpx;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+}
+
+.header-placeholder {
+  width: 80rpx;
+}
+
+.header-summary {
+  margin-top: 8rpx;
+  padding-left: 4rpx;
+}
+
+.summary-count {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== 记录列表 ===== */
+.record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  padding: 0 24rpx;
+}
+
+.record-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(37, 99, 235, 0.06);
+  padding: 28rpx 32rpx;
+}
+
+.record-card__date {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.record-date__text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #1E293B;
+}
+
+.record-date__sub {
+  font-size: 22rpx;
+  color: #94A3B8;
+}
+
+.record-card__value {
+  text-align: right;
+}
+
+.record-value__num {
+  font-size: 44rpx;
+  font-weight: 500;
+  color: #2563EB;
+  line-height: 1.2;
+}
+
+.record-value__unit {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-left: 8rpx;
+}
+
+/* 血糖模式 */
+.glucose-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16rpx;
+  margin-bottom: 8rpx;
+}
+
+.glucose-row:last-child {
+  margin-bottom: 0;
+}
+
+.glucose-label {
+  font-size: 22rpx;
+  color: #94A3B8;
+  padding: 4rpx 12rpx;
+  background: #EFF6FF;
+  border-radius: 12rpx;
+}
+
+.glucose-val {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #2563EB;
+  min-width: 120rpx;
+  text-align: right;
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+  gap: 24rpx;
+}
+
+.empty-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #EFF6FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #94A3B8;
+}

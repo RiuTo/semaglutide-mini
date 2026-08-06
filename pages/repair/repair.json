@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "体重记录",
+  "navigationBarBackgroundColor": "#F8FAFF",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#F8FAFF",
+  "usingComponents": {
+    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+  }
+}

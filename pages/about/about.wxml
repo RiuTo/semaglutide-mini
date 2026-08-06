@@ -1,0 +1,25 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">关于</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+  <view class="app-info-card">
+    <view class="app-logo"><text class="iconfont icon-drug iconfont--white iconfont--xl"></text></view>
+    <view class="app-name">司美记录助手</view>
+    <view class="app-version" bindtap="onCopyVersion">v{{version}}</view>
+    <view class="app-build">构建日期：{{buildDate}}</view>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+
+  <view class="footer-text g-text-center g-text-muted">
+    司美记录助手 · 健康相伴
+  </view>
+</view>

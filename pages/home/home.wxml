@@ -1,0 +1,115 @@
+<view class="container">
+  <!-- 蓝色渐变头部 -->
+  <view class="home-header">
+    <!-- 安全区 -->
+    <view class="header-safe-top"></view>
+
+    <!-- 页面标题 -->
+    <view class="header-title-bar">
+      <text class="header-title-text"></text>
+    </view>
+
+    <!-- 白色药品信息卡片 -->
+    <view class="header-drug-card">
+      <!-- 第一行：图标 + 药品信息 + 百分比 -->
+      <view class="drug-card-row">
+        <!-- 左侧圆形图标 -->
+        <view class="drug-icon-circle">
+          <text class="iconfont icon-drug"></text>
+        </view>
+
+        <!-- 中间药品信息 -->
+        <view class="drug-info-main">
+          <view class="drug-name-line">
+            <text class="drug-name-text">{{drugName}}</text>
+            <text class="drug-brand-tag" wx:if="{{brandName}}">{{brandName}}</text>
+          </view>
+          <text class="drug-spec-desc">{{penSize}}mg · {{planTypeName}}</text>
+        </view>
+
+        <!-- 右侧剩余百分比 -->
+        <view class="drug-remain-pct">
+          <text class="drug-remain-pct__num">{{remainPercent}}%</text>
+          <text class="drug-remain-pct__label">剩余</text>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="drug-progress-wrap">
+        <view class="drug-progress-track">
+          <view class="drug-progress-fill" style="width: {{remainPercent}}%"></view>
+        </view>
+        <text class="drug-progress-caption">剩余 {{remainDose}}mg / 总 {{penSize}}mg</text>
+      </view>
+
+      <!-- 更换提示 -->
+      <view class="drug-replace-tip" wx:if="{{needReplacePen}}">
+        <text class="iconfont icon-warning iconfont--warning"></text>
+        <text class="drug-replace-tip__text">下次需更换新笔</text>
+        <view class="drug-replace-btn" bindtap="onGoPenList">去更换</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷统计（有记录时显示） -->
+  <view class="g-spacer-md" wx:if="{{hasRecords}}"></view>
+  <view class="g-stats-row" wx:if="{{hasRecords}}">
+    <view class="g-stat-card">
+      <text class="g-stat-card__label">本次剂量</text>
+      <text class="g-stat-card__value">{{lastDose}}mg</text>
+    </view>
+    <view class="g-stat-card">
+      <text class="g-stat-card__label">已注射</text>
+      <text class="g-stat-card__value">{{injectionCount}}次</text>
+    </view>
+    <view class="g-stat-card">
+      <text class="g-stat-card__label">距下次</text>
+      <text class="g-stat-card__value">{{daysUntilNext}}天</text>
+    </view>
+  </view>
+
+  <!-- 下次注射计划 -->
+  <view class="g-spacer-md"></view>
+  <view class="g-card">
+    <view class="g-card__title">下次注射计划</view>
+    <!-- 有记录时显示具体计划 -->
+    <block wx:if="{{hasRecords}}">
+      <view class="plan-row">
+        <text class="iconfont icon-calendar iconfont--primary iconfont--sm"></text>
+        <text class="plan-text">{{nextInjectionShortDate}}</text>
+      </view>
+      <view class="plan-row plan-row--secondary">
+        <text class="iconfont icon-drug iconfont--primary iconfont--sm"></text>
+        <text class="plan-text plan-text--muted">{{lastDose}}mg · {{lastSite}}</text>
+      </view>
+      <button class="g-btn g-btn--primary plan-btn" bindtap="onCompleteInjection">记录注射</button>
+    </block>
+    <!-- 无记录时显示引导 -->
+    <block wx:else>
+      <view class="plan-empty">
+        <text class="plan-empty__text">还未开始注射记录</text>
+        <button class="g-btn g-btn--primary plan-btn" bindtap="onCompleteInjection">记录首次注射</button>
+      </view>
+    </block>
+  </view>
+
+  <!-- 最近记录（有记录时显示） -->
+  <view class="g-spacer-md" wx:if="{{hasRecords}}"></view>
+  <view class="g-section-header" wx:if="{{hasRecords}}">
+    <text class="g-section-title">最近记录</text>
+  </view>
+  <view class="record-list" wx:if="{{hasRecords}}">
+    <view class="record-card" wx:for="{{recentRecords}}" wx:key="id">
+      <view class="record-icon record-icon--success">
+        <text class="iconfont icon-check iconfont--success iconfont--sm"></text>
+      </view>
+      <view class="record-card__content">
+        <view class="record-card__title">{{item.shortDate}}</view>
+        <view class="record-card__desc">{{item.timeStr}} · {{item.dose}}mg · {{item.site}}</view>
+      </view>
+      <view class="g-tag g-tag--success">已完成</view>
+    </view>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

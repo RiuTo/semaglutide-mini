@@ -1,0 +1,88 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">{{metricLabel}}记录</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <view class="settings-section">
+    <view class="g-card">
+      <view class="record-form">
+        <view class="record-form__row" wx:if="{{metric === 'weight'}}">
+          <view class="record-form__label">体重</view>
+          <view class="record-form__input-wrap">
+            <input class="record-form__input" type="digit" placeholder="请输入体重" value="{{weight}}" bindinput="onWeightInput" />
+            <text class="record-form__unit">kg</text>
+          </view>
+        </view>
+        <view class="record-form__row" wx:if="{{metric === 'glucose'}}">
+          <view class="record-form__label">空腹血糖</view>
+          <view class="record-form__input-wrap">
+            <input class="record-form__input" type="digit" placeholder="空腹" value="{{fasting}}" bindinput="onFastingInput" />
+            <text class="record-form__unit">mmol/L</text>
+          </view>
+        </view>
+        <view class="record-form__row" wx:if="{{metric === 'glucose'}}">
+          <view class="record-form__label">餐后血糖</view>
+          <view class="record-form__input-wrap">
+            <input class="record-form__input" type="digit" placeholder="餐后" value="{{afterMeal}}" bindinput="onAfterMealInput" />
+            <text class="record-form__unit">mmol/L</text>
+          </view>
+        </view>
+        <view class="record-form__row">
+          <view class="record-form__label">日期</view>
+          <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
+            <view class="record-form__picker">
+              <text>{{recordDate}}</text>
+              <text class="record-form__arrow">›</text>
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="g-spacer-md"></view>
+
+      <view class="g-btn g-btn--primary" bindtap="onSave">保存记录</view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <view class="settings-section">
+    <view class="g-card">
+      <view class="g-card__title">趋势曲线</view>
+      <view class="chart-container">
+        <ec-canvas id="trendChart" canvas-id="trendChart" ec="{{ec}}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <view class="settings-section" wx:if="{{latestRecord}}">
+    <view class="g-card">
+      <view class="latest-header">
+        <view class="latest-header__info">
+          <text class="latest-header__date">{{latestRecord.date}}</text>
+          <block wx:if="{{metric === 'weight'}}">
+            <text class="latest-header__value">{{latestRecord.weight}} kg</text>
+          </block>
+          <block wx:else>
+            <text class="latest-header__value" wx:if="{{latestRecord.fasting}}">空腹 {{latestRecord.fasting}} mmol/L</text>
+          </block>
+        </view>
+        <view class="latest-header__btn" bindtap="onViewAll">
+          <text class="latest-header__btn-text">全部记录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

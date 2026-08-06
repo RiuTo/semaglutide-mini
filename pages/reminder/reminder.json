@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "提醒设置",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#F2F3F5",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  },
+  "navigationStyle": "custom"
+}

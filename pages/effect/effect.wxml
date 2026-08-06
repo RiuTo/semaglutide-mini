@@ -1,0 +1,32 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">药效趋势</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-card effect-card">
+    <view class="g-card__title">注射后药效变化</view>
+    <view class="effect-curve">
+      <view class="effect-curve__item" wx:for="{{effectDays}}" wx:key="day">
+        <view class="effect-curve__day">{{item.day}}</view>
+        <view class="effect-curve__bar-wrap">
+          <view class="effect-curve__bar" style="width: {{item.value}}"></view>
+        </view>
+        <view class="effect-curve__value effect-curve__value--{{item.value > 80 ? 'high' : (item.value > 50 ? 'mid' : 'low')}}">
+          {{item.value}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-card effect-info">
+    <view class="g-card__title">药效说明</view>
+    <view class="effect-info__text">司美格鲁肽注射后，药效在体内逐渐衰减。</view>
+    <view class="effect-info__text">建议在药效较高期间（D1-D3）配合饮食控制效果更佳。</view>
+  </view>
+</view>

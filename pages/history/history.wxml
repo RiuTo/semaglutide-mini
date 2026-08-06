@@ -1,0 +1,71 @@
+<view class="container">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">注射记录</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <block wx:if="{{groups.length > 0}}">
+    <view class="pen-group" wx:for="{{groups}}" wx:key="penId" wx:for-item="group" wx:for-index="gIdx">
+      <view class="pen-card">
+        <view class="pen-card__header">
+          <view class="pen-card__title-row">
+            <view class="pen-card__name">{{group.penInfo.drugName}}</view>
+            <view class="pen-card__tag pen-card__tag--current" wx:if="{{group.penInfo.isCurrent}}">使用中</view>
+            <view class="pen-card__tag pen-card__tag--sealed" wx:elif="{{group.penInfo.status === 'sealed'}}">未开封</view>
+            <view class="pen-card__tag pen-card__tag--used" wx:elif="{{group.penInfo.status === 'used'}}">已用完</view>
+          </view>
+          <view class="pen-card__spec">{{group.penInfo.specName}}</view>
+        </view>
+        <view class="pen-card__stats">
+          <view class="pen-stat">
+            <view class="pen-stat__value">{{group.penInfo.purchaseDate}}</view>
+            <view class="pen-stat__label">购买日期</view>
+          </view>
+          <view class="pen-stat">
+            <view class="pen-stat__value">{{group.recordCount}}次</view>
+            <view class="pen-stat__label">注射次数</view>
+          </view>
+          <view class="pen-stat">
+            <view class="pen-stat__value">{{group.totalUsed}}mg</view>
+            <view class="pen-stat__label">累计用量</view>
+          </view>
+        </view>
+        <view class="pen-card__toggle" wx:if="{{group.penInfo.status === 'used'}}">
+          <view class="toggle-btn" data-index="{{gIdx}}" catchtap="onToggleGroup">
+            <text class="iconfont icon-arrow-down iconfont--white iconfont--sm {{group.collapsed ? '' : 'toggle-btn__icon--up'}}"></text>
+          </view>
+        </view>
+      </view>
+
+      <view class="record-list" wx:if="{{!group.collapsed}}">
+        <view class="record-card" wx:for="{{group.records}}" wx:key="id" wx:for-item="record">
+          <view class="record-card__icon">
+            <text class="iconfont icon-check iconfont--white iconfont--sm"></text>
+          </view>
+          <view class="record-card__content">
+            <view class="record-card__title">{{record.date}}</view>
+            <view class="record-card__desc">{{record.dose}}mg · {{record.site}}</view>
+          </view>
+          <view class="g-tag g-tag--primary">{{record.dose}}mg</view>
+        </view>
+      </view>
+
+      <view class="group-spacer" style="height: {{group.spacerHeight}}rpx;"></view>
+    </view>
+  </block>
+
+  <view class="g-empty" wx:if="{{groups.length === 0}}">
+    <view class="g-empty__icon">
+      <text class="iconfont icon-record iconfont--muted iconfont--xl"></text>
+    </view>
+    <view class="g-empty__title">暂无注射记录</view>
+    <view class="g-empty__desc">记录第一次注射，开始你的健康管理之旅</view>
+  </view>
+</view>

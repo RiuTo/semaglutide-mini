@@ -1,0 +1,85 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">添加新笔</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-sm"></view>
+
+  <!-- 选择药物 -->
+  <view class="g-card">
+    <view class="g-card__title">选择药物</view>
+    <view class="drug-grid">
+      <view
+        wx:for="{{drugTypes}}"
+        wx:key="type"
+        class="drug-card {{drugKey === item.type ? 'selected' : ''}}"
+        bindtap="onDrugSelect"
+        data-key="{{item.type}}"
+      >
+        <view class="drug-card__title">{{item.name}}</view>
+        <view class="drug-card__desc">{{item.typeName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 选择规格 -->
+  <view class="g-card">
+    <view class="g-card__title">选择规格</view>
+    <view class="spec-grid">
+      <view
+        wx:for="{{specs}}"
+        wx:key="id"
+        class="spec-card {{specKey === item.id ? 'selected' : ''}}"
+        bindtap="onSpecSelect"
+        data-key="{{item.id}}"
+      >
+        <view class="spec-card__dose">{{item.totalDose}}mg</view>
+        <view class="spec-card__desc">{{item.concentration}}mg/ml · {{item.volume}}ml</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购买日期 -->
+  <view class="g-card">
+    <view class="g-card__title">购买日期</view>
+    <view class="date-selector">
+      <picker mode="date" value="{{purchaseDate}}" start="{{minDate}}" bindchange="onDateChange">
+        <view class="picker-row">
+          <text class="iconfont icon-calendar iconfont--primary iconfont--sm"></text>
+          <text class="picker-value">{{purchaseDate}}</text>
+          <text class="iconfont icon-arrow-right iconfont--sm iconfont--muted"></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 价格 -->
+  <view class="g-card">
+    <view class="g-card__title">价格</view>
+    <view class="price-input-wrap">
+      <input
+        class="price-input"
+        type="digit"
+        placeholder="请输入价格"
+        value="{{price}}"
+        bindinput="onPriceInput"
+      />
+      <text class="price-unit">元</text>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <!-- 保存 -->
+  <view class="save-section">
+    <button class="g-btn g-btn--primary" bindtap="onSave">确认添加</button>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

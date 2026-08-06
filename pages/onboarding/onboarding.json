@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "新用户引导",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#F2F3F5",
+  "usingComponents": {},
+  "navigationStyle": "custom"
+}

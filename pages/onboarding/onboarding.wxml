@@ -1,0 +1,239 @@
+<view class="container container--no-tabbar">
+  <view class="top-bar" wx:if="{{currentStep > 0}}">
+    <view class="steps-indicator">
+      <block wx:for="{{steps}}" wx:key="index" wx:for-index="idx">
+        <view class="step-dot {{currentStep >= idx ? 'active' : ''}} {{currentStep > idx ? 'done' : ''}}">
+          <text wx:if="{{currentStep > idx}}" class="iconfont icon-check iconfont--sm iconfont--white"></text>
+          <text wx:else>{{idx + 1}}</text>
+        </view>
+        <view class="step-line {{currentStep > idx ? 'active' : ''}}" wx:if="{{idx < steps.length - 1}}"></view>
+      </block>
+    </view>
+  </view>
+
+  <view class="welcome-step" wx:if="{{currentStep === 0}}">
+    <view class="welcome-icon"><text class="iconfont icon-inject iconfont--white"></text></view>
+    <view class="welcome-title">司美记录助手</view>
+    <view class="welcome-subtitle">您的专属注射管理助手</view>
+    <view class="welcome-features">
+      <view class="feature-item"><text class="iconfont icon-bar iconfont--primary iconfont--sm"></text> 注射记录追踪</view>
+      <view class="feature-item"><text class="iconfont icon-trend-up iconfont--primary iconfont--sm"></text> 药效曲线计算</view>
+      <view class="feature-item"><text class="iconfont icon-bell iconfont--primary iconfont--sm"></text> 智能提醒设置</view>
+      <view class="feature-item"><text class="iconfont icon-export iconfont--primary iconfont--sm"></text> 数据导出分享</view>
+    </view>
+    <view class="welcome-btn">
+      <button class="g-btn g-btn--primary" bindtap="onStart">
+        开始使用
+      </button>
+    </view>
+  </view>
+
+  <view class="step-content" wx:if="{{currentStep === 1}}">
+    <view class="step-header">
+      <view class="step-title">选择药物</view>
+      <view class="step-desc">请选择您使用的药物类型</view>
+    </view>
+
+    <view class="drug-list">
+      <view
+        wx:for="{{drugList}}"
+        wx:key="type"
+        class="drug-list-item  drug-item {{drugKey === item.type ? 'selected' : ''}}"
+        bindtap="onSelectDrug"
+        data-key="{{item.type}}"
+      >
+        <view class="drug-check">
+          <view class="check-icon" wx:if="{{drugKey === item.type}}"><text class="iconfont icon-check iconfont--white iconfont--sm"></text></view>
+        </view>
+        <view class="drug-content">
+          <view class="drug-name">{{item.brandName || item.drugName}}</view>
+          <view class="drug-subtitle" wx:if="{{item.typeName}}">{{item.drugName}} · {{item.typeName}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="step-content" wx:if="{{currentStep === 2}}">
+    <view class="step-header">
+      <view class="step-title">选择规格</view>
+      <view class="step-desc">{{drugName}}</view>
+    </view>
+
+    <view class="spec-list">
+      <view
+        wx:for="{{specList}}"
+        wx:key="id"
+        class="g-card spec-item {{specKey === item.id ? 'selected' : ''}}"
+        bindtap="onSelectSpec"
+        data-key="{{item.id}}"
+      >
+        <view class="spec-check">
+          <view class="check-icon" wx:if="{{specKey === item.id}}"><text class="iconfont icon-check iconfont--white iconfont--sm"></text></view>
+        </view>
+        <view class="spec-info">
+          <view class="spec-name" wx:if="{{drugKey === 'tirzepatide'}}">{{item.volume}} mL:{{item.totalDose}} mg</view>
+          <view class="spec-name" wx:else>{{item.concentration}}mg/ml，{{item.volume}}ml{{item.form}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="step-content" wx:if="{{currentStep === 3}}">
+    <view class="step-header">
+      <view class="step-title">当前状态</view>
+      <view class="step-desc">这支笔是否是新拆封的？</view>
+    </view>
+
+    <view class="option-row">
+      <view
+        class="option-card {{isNewPen ? 'selected' : ''}}"
+        bindtap="onNewPenChange"
+        data-value="true"
+      >
+        <view class="option-title">新拆封</view>
+        <view class="option-desc">还未使用过</view>
+      </view>
+      <view
+        class="option-card {{!isNewPen ? 'selected' : ''}}"
+        bindtap="onNewPenChange"
+        data-value="false"
+      >
+        <view class="option-title">已使用</view>
+        <view class="option-desc">已经打过了</view>
+      </view>
+    </view>
+
+    <view class="g-card used-section" wx:if="{{!isNewPen}}">
+      <view class="section-title">
+        已使用记录
+        <text class="max-hint">（最多 {{maxUsage}} 次）</text>
+      </view>
+
+      <view class="dose-selector">
+        <view class="section-subtitle">选择本次剂量</view>
+        <view class="dose-options">
+          <view
+            wx:for="{{doseOptions}}"
+            wx:key="*this"
+            class="g-tag dose-option {{selectedDose === item ? 'selected' : ''}}"
+            bindtap="onSelectDose"
+            data-dose="{{item}}"
+          >
+            {{item}}mg
+          </view>
+        </view>
+        <button class="g-btn g-btn--primary add-record-btn" bindtap="onAddRecord">
+          <text>添加一次</text>
+        </button>
+      </view>
+
+      <view class="record-list" wx:if="{{groupedRecords.length > 0}}">
+        <view
+          wx:for="{{groupedRecords}}"
+          wx:key="dose"
+          class="record-item"
+        >
+          <view class="record-dose">{{item.dose}}mg*{{item.count}}</view>
+          <view class="record-delete" bindtap="onRemoveRecord" data-dose="{{item.dose}}">删除</view>
+        </view>
+      </view>
+      <view class="empty-hint" wx:else>
+        暂无记录，请添加已使用的注射记录
+      </view>
+
+      <view class="remaining-card" wx:if="{{totalDose > 0}}">
+        <view class="g-flex-between remaining-header">
+          <text>剩余药量</text>
+          <text class="remaining-percent">{{remainingPercent}}%</text>
+        </view>
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{remainingPercent}}%"></view>
+        </view>
+        <view class="remaining-detail">
+          剩余 {{remainingValue}}mg / 总 {{totalDose}}mg
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="step-content" wx:if="{{currentStep === 4}}">
+    <view class="step-header">
+      <view class="step-title">方案设置</view>
+      <view class="step-desc">选择您的使用方案</view>
+    </view>
+
+    <view class="plan-options">
+      <view
+        class="plan-option {{planType === 'weight' ? 'selected' : ''}}"
+        bindtap="onSelectPlan"
+        data-type="weight"
+      >
+        <view class="plan-name">减重方案</view>
+        <view class="plan-desc">用于体重管理</view>
+      </view>
+      <view
+        class="plan-option {{planType === 'diabetes' ? 'selected' : ''}}"
+        bindtap="onSelectPlan"
+        data-type="diabetes"
+      >
+        <view class="plan-name">糖尿病方案</view>
+        <view class="plan-desc">用于血糖控制</view>
+      </view>
+    </view>
+
+    <view class="g-card date-section">
+      <view class="section-title">开始日期</view>
+      <picker mode="date" value="{{startDate}}" start="{{minDate}}" bindchange="onDateChange">
+        <view class="date-picker">
+          <text class="iconfont icon-calendar iconfont--primary date-icon"></text>
+          <text class="date-text">{{startDate}}</text>
+          <text class="date-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="g-card summary-card">
+      <view class="summary-title">初始化完成</view>
+      <view class="summary-item">
+        <text class="summary-label">药物</text>
+        <text class="summary-value">{{drugName}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">规格</text>
+        <text class="summary-value">{{specDisplayName}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">方案</text>
+        <text class="summary-value">{{planTypeName}}</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-label">开始日期</text>
+        <text class="summary-value">{{startDate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-actions" wx:if="{{currentStep > 0}}">
+    <button
+      wx:if="{{currentStep > 1}}"
+      class="g-btn g-btn--secondary prev-btn"
+      bindtap="onPrev"
+    >
+      上一步
+    </button>
+    <button
+      wx:if="{{currentStep < 4}}"
+      class="g-btn g-btn--primary next-btn"
+      bindtap="onNext"
+    >
+      下一步
+    </button>
+    <button
+      wx:if="{{currentStep === 4}}"
+      class="g-btn g-btn--primary next-btn"
+      bindtap="onComplete"
+    >
+      完成设置
+    </button>
+  </view>
+</view>

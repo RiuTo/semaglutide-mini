@@ -1,0 +1,132 @@
+<view class="container">
+  <!-- 蓝色渐变头部 -->
+  <view class="profile-header">
+    <!-- 安全区 -->
+    <view class="header-safe-top"></view>
+
+    <!-- 页面标题 -->
+    <view class="header-title-bar">
+      <text class="header-title-text"></text>
+    </view>
+
+    <!-- 白色药品信息卡片 -->
+    <view class="header-drug-card">
+      <!-- 第一行：图标 + 药品信息 -->
+      <view class="drug-card-row">
+        <!-- 左侧圆形图标 -->
+        <view class="drug-icon-circle">
+          <text class="iconfont icon-drug"></text>
+        </view>
+
+        <!-- 中间药品信息 -->
+        <view class="drug-info-main">
+          <view class="drug-name-line">
+            <text class="drug-name-text">{{brandName || drugName}}</text>
+            <text class="drug-brand-tag" wx:if="{{brandName}}">{{planTypeName}}</text>
+          </view>
+          <text class="drug-spec-desc">{{specDisplayName}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="g-spacer-md"></view>
+  <view class="stats-card">
+    <view class="stats-item">
+      <text class="stats-num">{{injectionCount}}</text>
+      <text class="stats-label">注射记录</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-num">{{metricCount}}</text>
+      <text class="stats-label">{{metricLabel}}记录</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-num">{{planTypeName}}</text>
+      <text class="stats-label">方案</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="g-spacer-md"></view>
+
+  <view class="profile-list">
+    <!-- <view class="profile-card" bindtap="onRepair">
+      <view class="profile-card__icon">
+        <text class="iconfont icon-weight iconfont--primary"></text>
+      </view>
+      <view class="profile-card__content">
+        <view class="profile-card__title">体重记录</view>
+      </view>
+      <view class="profile-card__right">
+        <text class="profile-card__arrow">›</text>
+      </view>
+    </view> -->
+    <view class="profile-card" bindtap="onPenList">
+      <view class="profile-card__icon">
+        <text class="iconfont icon-drug iconfont--primary"></text>
+      </view>
+      <view class="profile-card__content">
+        <view class="profile-card__title">针剂管理</view>
+      </view>
+      <view class="profile-card__right">
+        <text class="profile-card__arrow">›</text>
+      </view>
+    </view>
+    <view class="profile-card" bindtap="onReminder">
+      <view class="profile-card__icon">
+        <text class="iconfont icon-bell iconfont--primary"></text>
+      </view>
+      <view class="profile-card__content">
+        <view class="profile-card__title">提醒设置</view>
+      </view>
+      <view class="profile-card__right">
+        <text class="profile-card__arrow">›</text>
+      </view>
+    </view>
+    <view class="profile-card" bindtap="onPlanSettings">
+      <view class="profile-card__icon">
+        <text class="iconfont icon-setting iconfont--primary"></text>
+      </view>
+      <view class="profile-card__content">
+        <view class="profile-card__title">设置方案</view>
+      </view>
+      <view class="profile-card__right">
+        <text class="profile-card__arrow">›</text>
+      </view>
+    </view>
+    <view class="profile-card" bindtap="onExport">
+      <view class="profile-card__icon">
+        <text class="iconfont icon-export iconfont--primary"></text>
+      </view>
+      <view class="profile-card__content">
+        <view class="profile-card__title">导出记录</view>
+      </view>
+      <view class="profile-card__right">
+        <text class="profile-card__arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <view class="profile-list">
+    <view class="profile-card" bindtap="onAbout">
+      <view class="profile-card__icon">
+        <text class="iconfont icon-info iconfont--primary"></text>
+      </view>
+      <view class="profile-card__content">
+        <view class="profile-card__title">关于</view>
+      </view>
+      <view class="profile-card__right">
+        <text class="version-text">v{{version}}</text>
+        <text class="env-badge {{env === 'DEV' ? 'dev' : 'prod'}}">{{env}}</text>
+        <text class="profile-card__arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

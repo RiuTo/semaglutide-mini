@@ -1,0 +1,112 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">{{metricLabel}}记录</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-sm"></view>
+
+  <view class="g-card">
+    <view class="form-row">
+      <view class="form-label">日期</view>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="form-value g-text-primary">{{date}} ▼</view>
+      </picker>
+    </view>
+
+    <block wx:if="{{metric === 'weight'}}">
+      <view class="form-row">
+        <view class="form-label">体重</view>
+        <input
+          class="form-input g-flex-1"
+          type="digit"
+          placeholder="请输入体重"
+          value="{{weight}}"
+          bindinput="onWeightInput"
+        />
+        <text class="form-unit">kg</text>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="form-row">
+        <view class="form-label">空腹</view>
+        <input
+          class="form-input g-flex-1"
+          type="digit"
+          placeholder="请输入空腹血糖"
+          value="{{fasting}}"
+          bindinput="onFastingInput"
+        />
+        <text class="form-unit">mmol/L</text>
+      </view>
+
+      <view class="form-row">
+        <view class="form-label">餐后</view>
+        <input
+          class="form-input g-flex-1"
+          type="digit"
+          placeholder="请输入餐后血糖"
+          value="{{afterMeal}}"
+          bindinput="onAfterMealInput"
+        />
+        <text class="form-unit">mmol/L</text>
+      </view>
+    </block>
+
+    <view class="form-row">
+      <view class="form-label">备注</view>
+      <input
+        class="form-input g-flex-1"
+        placeholder="选填"
+        value="{{note}}"
+        bindinput="onNoteInput"
+      />
+    </view>
+
+    <view class="form-save">
+      <button class="g-btn g-btn--primary" bindtap="onSave">保存</button>
+    </view>
+  </view>
+
+  <view class="g-spacer-md" wx:if="{{records.length > 0}}"></view>
+
+  <view class="g-section-header" wx:if="{{records.length > 0}}">
+    <text class="g-section-title">历史记录</text>
+  </view>
+
+  <view class="g-list" wx:if="{{records.length > 0}}">
+    <view class="g-list-item record-item" wx:for="{{records}}" wx:key="date">
+      <view class="g-list-item__content">
+        <view class="g-list-item__title">{{item.date}}</view>
+        <view class="record-values">
+          <block wx:if="{{metric === 'weight'}}">
+            <view class="record-val">
+              <text class="t-caption">体重</text>
+              <text class="record-num g-text-primary g-text-bold">{{item.weight}}</text>
+              <text class="t-caption">kg</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="record-val">
+              <text class="t-caption">空腹</text>
+              <text class="record-num g-text-primary g-text-bold">{{item.fasting}}</text>
+            </view>
+            <view class="record-val" wx:if="{{item.afterMeal}}">
+              <text class="t-caption">餐后</text>
+              <text class="record-num g-text-primary g-text-bold">{{item.afterMeal}}</text>
+            </view>
+          </block>
+        </view>
+        <view class="t-caption record-note" wx:if="{{item.note}}">{{item.note}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

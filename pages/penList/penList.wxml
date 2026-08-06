@@ -1,0 +1,66 @@
+<view class="container container--no-tabbar">
+  <view class="page-header">
+    <view class="g-flex-between">
+      <view class="back-btn" bindtap="onBack">
+        <text class="iconfont icon-arrow-left iconfont--primary iconfont--sm"></text>
+      </view>
+      <view class="page-header__title">针剂购买记录</view>
+      <view class="page-header__placeholder"></view>
+    </view>
+  </view>
+
+  <view class="g-spacer-sm"></view>
+  <view class="pen-list" wx:if="{{pens.length > 0}}">
+    <view
+      wx:for="{{pens}}"
+      wx:key="penId"
+      class="pen-card {{item.isCurrent ? 'pen-card--current' : ''}} {{item.status === 'sealed' ? 'pen-card--sealed' : ''}}"
+      data-pen-id="{{item.penId}}"
+      bindtap="onTapPen"
+    >
+      <view class="pen-card__header">
+        <view class="pen-card__title">{{item.drugName}}</view>
+        <view class="pen-card__status" wx:if="{{item.isCurrent}}">使用中</view>
+        <view class="pen-card__status pen-card__status--sealed" wx:elif="{{item.status === 'sealed'}}">未开封</view>
+        <view class="pen-card__status pen-card__status--used" wx:elif="{{item.status === 'used'}}">已用完</view>
+      </view>
+      <view class="pen-card__spec">{{item.specName}}</view>
+      <view class="pen-card__meta">
+        <text class="pen-card__label">购买日期</text>
+        <text class="pen-card__value">{{item.purchaseDate}}</text>
+      </view>
+      <view class="pen-card__meta">
+        <text class="pen-card__label">价格</text>
+        <text class="pen-card__value">¥{{item.price}}</text>
+      </view>
+      <view class="pen-card__meta">
+        <text class="pen-card__label">总量</text>
+        <text class="pen-card__value">{{item.totalDose}}mg</text>
+      </view>
+      <view class="pen-card__meta">
+        <text class="pen-card__label">已用</text>
+        <text class="pen-card__value">{{item.usedDose}}mg</text>
+      </view>
+      <view class="pen-card__meta">
+        <text class="pen-card__label">剩余</text>
+        <text class="pen-card__value pen-card__value--highlight">{{item.remainDose}}mg</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="g-empty" wx:if="{{pens.length === 0}}">
+    <view class="g-empty__icon">
+      <text class="iconfont icon-drug iconfont--muted iconfont--xl"></text>
+    </view>
+    <view class="g-empty__title">暂无购买记录</view>
+    <view class="g-empty__desc">点击下方按钮添加第一支针剂</view>
+  </view>
+
+  <view class="g-spacer-md"></view>
+
+  <view class="pen-add-section">
+    <button class="g-btn g-btn--primary" bindtap="onAddPen">添加新笔</button>
+  </view>
+
+  <view class="g-spacer-lg"></view>
+</view>

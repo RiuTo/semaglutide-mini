@@ -1,0 +1,3 @@
+<view class="chart-container">
+  <canvas canvas-id="trendCanvas" class="trend-canvas" disable-scroll="true"></canvas>
+</view>
